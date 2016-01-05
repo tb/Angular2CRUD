@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Angular 2 CRUD Sample Application</title>
+
+    <!-- 1. Load Angular 2 libraries. -->
+    <!-- Angular 2 Dependencies: Browser Polyfill, SystemJS, Rx (Reactive Extensions). -->
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script> >
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+    <!-- 2. Configure SystemJS. -->
+    <!-- Detailed Info: https://angular.io/docs/ts/latest/quickstart.html#!#systemjs -->
+    <script>
+      System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/boot')
+            .then(null, console.error.bind(console));
+    </script>
+
+  </head>
+
+  <body>
+    <!-- 3. Display the application. -->
+    <crud-app>Loading...</crud-app>
+  </body>
+</html>
