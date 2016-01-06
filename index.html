@@ -1,6 +1,11 @@
 <html>
   <head>
-    <title>Angular 2 CRUD Sample Application</title>
+    <!-- 0. Set the base href URL to '/'. -->
+    <!-- This tells the router how to compose navigation URLs. -->
+    <base href="/">
+
+    <!-- Page title. -->
+    <title>Angular 2 - Sample CRUD Application</title>
 
     <!-- 1. Load Angular 2 libraries. -->
     <!-- Angular 2 Dependencies: Browser Polyfill, SystemJS, Rx (Reactive Extensions). -->
@@ -8,9 +13,11 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script> >
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.dev.js"></script>
 
     <!-- 2. Configure SystemJS. -->
-    <!-- Detailed Info: https://angular.io/docs/ts/latest/quickstart.html#!#systemjs -->
+    <!-- Info: https://angular.io/docs/ts/latest/quickstart.html#!#systemjs -->
     <script>
       System.config({
         packages: {        
