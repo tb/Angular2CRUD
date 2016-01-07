@@ -70,8 +70,6 @@ export class ContactListComponent implements OnInit {
      * More Info: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
      */
     ngOnInit() {
-        this.contacts = [];
-
         this._elasticApiService.getContacts().subscribe(contacts => this.contacts = contacts);
     }
 
