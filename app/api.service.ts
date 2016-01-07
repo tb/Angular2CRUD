@@ -53,7 +53,7 @@ export class ApiService {
     }
 
     /**
-     *Get number of contacts for indexing purposes.
+     * Get number of contacts for indexing purposes.
      */
     getContactCount() {
         var url = this.BASE_URL + '_count';
