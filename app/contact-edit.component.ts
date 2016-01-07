@@ -1,32 +1,46 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
 import {ElasticApiService} from './elastic-api.service';
 import {Contact} from './contact';
 
 @Component({
-    selector: 'contact-detail',
+    selector: 'contact-edit',
     providers: [ElasticApiService],
     template: `
         <div *ngIf="contact">
             <h3>{{contact.firstName}} {{contact.lastName}}</h3>
 
-            <button type="button" (click)="onEdit()">Edit</button>
-            <button type="button" (click)="onDelete()">Delete</button>
+            <form #f="ngForm" (ngSubmit)="onSubmit()">
+                <label for="firstName">First Name:</label>
+                <input type="text" [(ngModel)]="contact.firstName" required>
+
+                <br>
+                <br>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" [(ngModel)]="contact.lastName" required>
+               
+
+                <br>
+                <br>
+
+                <button type="submit">Submit</button>
+                <button type="button" (click)="onCancel()">Cancel</button>
+            </form>
         </div>
     `
 })
-export class ContactDetailComponent implements OnInit {
-    public contact: Contact; // Current contact we are viewing.
-
+export class ContactEditComponent {
+    public contact: Contact; // Contact we are editing.
+    
     /**
-     * ContactDetailComponent Constructor.
+     * ContactEditComponent Constructor.
      *
      * @param {Router} _router - Private Router injected into this component.
-     * @param {RouteParams} _routeParams - Private RouteParams injected into this component.
      * @param {ElasticApiService} _apiService - Private ElasticApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
-    constructor(private _router: Router, 
+    constructor(private _router: Router,
                 private _routeParams: RouteParams, 
                 private _elasticApiService: ElasticApiService) {}
 
@@ -40,16 +54,16 @@ export class ContactDetailComponent implements OnInit {
     }
 
     /**
-     * Edit contact click callback.
+     * Submit click handler.
      */
-    onEdit() {
-        this._router.navigate(['ContactEdit', { id: this.contact.id }]);
+    onSubmit() {
+        this._elasticApiService.updateContact(this.contact).subscribe(res => this._router.navigate(['Contacts']));
     }
 
     /**
-     * Delete contact click callback.
+     * Cancel click callback.
      */
-    onDelete() {
-        this._elasticApiService.deleteContact(this.contact.id).subscribe(res => this._router.navigate(['Contacts']));
+    onCancel() {
+        this._router.navigate(['ContactDetail', { id: this.contact.id }]);
     }
 }

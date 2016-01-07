@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ContactListComponent} from './contact-list.component';
 import {ContactDetailComponent} from './contact-detail.component';
 import {ContactNewComponent} from './contact-new.component';
+import {ContactEditComponent} from './contact-edit.component';
 
 @Component({
     selector: 'crud-app',
@@ -19,6 +20,7 @@ import {ContactNewComponent} from './contact-new.component';
 @RouteConfig([ // Configure a router with RouteDefinitions, each mapping a URL path to a component.
     { path: '/contacts', name: 'Contacts', component: ContactListComponent },
     { path: '/contact/new', name: 'ContactNew', component: ContactNewComponent },
-    { path: '/contact/:id', name: 'ContactDetail', component: ContactDetailComponent }
+    { path: '/contact/:id', name: 'ContactDetail', component: ContactDetailComponent },
+    { path: '/contact/edit/:id', name: 'ContactEdit', component: ContactEditComponent }
 ])
-export class CrudAppComponent {}
+export class CrudAppComponent { }
