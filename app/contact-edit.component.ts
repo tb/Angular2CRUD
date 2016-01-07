@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
 import {ElasticApiService} from './elastic-api.service';
 import {Contact} from './contact';
@@ -30,7 +30,7 @@ import {Contact} from './contact';
         </div>
     `
 })
-export class ContactEditComponent {
+export class ContactEditComponent implements OnInit {
     public contact: Contact; // Contact we are editing.
     
     /**
