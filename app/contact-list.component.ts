@@ -53,7 +53,7 @@ import {ContactDetailComponent} from './contact-detail.component';
 })
 export class ContactListComponent implements OnInit {
     public title: string = 'Contact List'; // Type not really needed here (inferred based on string value given).
-    public contacts: Contact[] = []; // List of contacts we will display.
+    public contacts: Contact[]; // List of contacts we will display.
 
     /**
      * ContactListComponent Constructor.
@@ -62,13 +62,15 @@ export class ContactListComponent implements OnInit {
      * @param {ApiService} _apiService - Private ApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
-    constructor(private _router: Router, private _apiService: ApiService) {}
+    constructor(private _router: Router, 
+                private _apiService: ApiService) {}
 
     /**
      * Lifecycle Hook: ngOnInit - after the first ngOnChanges.
      * More Info: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
      */
     ngOnInit() {
+        this.contacts = [];
         this._apiService.getContacts().subscribe(res => res.json().hits.hits.forEach(c => this.contacts.push(c._source)));
     }
 

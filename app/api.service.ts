@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {URL} from './constants';
-import {CONTACTS} from './mock-contacts';
+import {Contact} from './contact';
 
 @Injectable()
 export class ApiService {
@@ -40,5 +40,23 @@ export class ApiService {
     deleteContact(id: number | string) {
         var url = this.BASE_URL + id + '?refresh=true';
         return this._http.delete(url);
+    }
+
+    /**
+     * Create a contact.
+     *
+     * @param {Contact} contact - Contact object.
+     */
+    createContact(contact: Contact) {
+        var url = this.BASE_URL + contact.id + '?refresh=true';
+        return this._http.put(url, JSON.stringify(contact));
+    }
+
+    /**
+     *Get number of contacts for indexing purposes.
+     */
+    getContactCount() {
+        var url = this.BASE_URL + '_count';
+        return this._http.get(url);
     }
 }
