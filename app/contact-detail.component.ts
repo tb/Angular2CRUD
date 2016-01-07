@@ -36,7 +36,7 @@ export class ContactDetailComponent implements OnInit {
      */
     ngOnInit() {
         let id = this._routeParams.get('id'); // 'let' keyword allows block scoping for variables.
-        this._elasticApiService.getContact(id).subscribe(contact => this.contact = contact.json()._source); 
+        this._elasticApiService.getContact(id).subscribe(contact => this.contact = contact);
     }
 
     /**
@@ -50,6 +50,6 @@ export class ContactDetailComponent implements OnInit {
      * Delete contact click callback.
      */
     onDelete() {
-        this._elasticApiService.deleteContact(this.contact.id).subscribe(res => this._router.navigate(['Contacts']));
+        this._elasticApiService.deleteContact(this.contact.id).then(res => this._router.navigate(['Contacts']));
     }
 }

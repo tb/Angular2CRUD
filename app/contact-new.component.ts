@@ -1,5 +1,4 @@
 import {Component} from 'angular2/core';
-import {NgForm} from 'angular2/common';
 import {Router} from 'angular2/router';
 import {ElasticApiService} from './elastic-api.service';
 import {Contact} from './contact';

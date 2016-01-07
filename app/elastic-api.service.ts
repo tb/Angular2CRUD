@@ -1,7 +1,9 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Contact} from './contact';
-import 'rxjs/add/operator/toPromise'; // Issue: https://github.com/angular/angular/pull/5947
+
+import 'rxjs/add/operator/map'; // Issue: https://github.com/angular/angular/pull/5947
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ElasticApiService {
@@ -19,15 +21,20 @@ export class ElasticApiService {
      */
     getContacts() {
         var url = this.BASE_URL + '/contact/_search';
-        return this._http.get(url);
-    }
 
-    /**
-     * Get number of contacts for indexing purposes.
-     */
-    getContactCount() {
-        var url = this.BASE_URL + '/contact/_count';
-        return this._http.get(url);
+        return this._http.get(url)
+        .map(res => { 
+            return res.json().hits.hits; 
+        })
+        .map((hits: Array<any>) => {
+            let contacts: Array<Contact> = [];
+
+            if (hits) {
+                hits.forEach(hit => contacts.push(hit._source));
+            }
+
+            return contacts;
+        });
     }
 
     /**
@@ -41,9 +48,9 @@ export class ElasticApiService {
         return this.getContacts().toPromise().then(res => {
             contact.id = -1;
 
-            res.json().hits.hits.forEach(c => {
-                if (c._source.id > contact.id) {
-                    contact.id = c._source.id;
+            res.forEach(c => {
+                if (c.id > contact.id) {
+                    contact.id = c.id;
                 }
             });
 
@@ -62,7 +69,7 @@ export class ElasticApiService {
      */
     getContact(id: number | string) {
         var url = this.BASE_URL + '/contact/' + id;
-        return this._http.get(url);
+        return this._http.get(url).map(res => res.json()._source);
     }
 
     /**
@@ -72,7 +79,7 @@ export class ElasticApiService {
      */
     updateContact(contact: Contact) {
         var url = this.BASE_URL + '/contact/' + contact.id + '?refresh=true';
-        return this._http.put(url, JSON.stringify(contact));
+        return this._http.put(url, JSON.stringify(contact)).toPromise();
     }
 
     /**
@@ -82,6 +89,6 @@ export class ElasticApiService {
      */
     deleteContact(id: number | string) {
         var url = this.BASE_URL + '/contact/' + id + '?refresh=true';
-        return this._http.delete(url);
+        return this._http.delete(url).toPromise();
     }
 }

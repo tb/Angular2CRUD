@@ -50,14 +50,14 @@ export class ContactEditComponent {
      */
     ngOnInit() {
         let id = this._routeParams.get('id'); // 'let' keyword allows block scoping for variables.
-        this._elasticApiService.getContact(id).subscribe(contact => this.contact = contact.json()._source); 
+        this._elasticApiService.getContact(id).subscribe(contact => this.contact = contact); 
     }
 
     /**
      * Submit click handler.
      */
     onSubmit() {
-        this._elasticApiService.updateContact(this.contact).subscribe(res => this._router.navigate(['Contacts']));
+        this._elasticApiService.updateContact(this.contact).then(res => this._router.navigate(['Contacts']));
     }
 
     /**
