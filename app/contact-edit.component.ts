@@ -57,7 +57,7 @@ export class ContactEditComponent {
      * Submit click handler.
      */
     onSubmit() {
-        this._elasticApiService.updateContact(this.contact).then(res => this._router.navigate(['Contacts']));
+        this._elasticApiService.updateContact(this.contact).then(() => this._router.navigate(['Contacts']));
     }
 
     /**

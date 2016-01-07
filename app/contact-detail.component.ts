@@ -50,6 +50,6 @@ export class ContactDetailComponent implements OnInit {
      * Delete contact click callback.
      */
     onDelete() {
-        this._elasticApiService.deleteContact(this.contact.id).then(res => this._router.navigate(['Contacts']));
+        this._elasticApiService.deleteContact(this.contact.id).then(() => this._router.navigate(['Contacts']));
     }
 }

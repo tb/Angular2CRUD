@@ -53,7 +53,7 @@ import {ContactDetailComponent} from './contact-detail.component';
 })
 export class ContactListComponent implements OnInit {
     public title: string = 'Contact List'; // Type not really needed here (inferred based on string value given).
-    public contacts: Contact[]; // List of contacts we will display.
+    public contacts: Contact[]; // List of contacts.
 
     /**
      * ContactListComponent Constructor.

@@ -41,9 +41,7 @@ export class ContactNewComponent {
      * Submit click handler.
      */
     onSubmit(contact) {
-        var self = this; // Capture 'this' (current function invocation context).
-
-        this._elasticApiService.createContact(contact).then(() => self._router.navigate(['Contacts']));
+        this._elasticApiService.createContact(contact).then(() => this._router.navigate(['Contacts']));
     }
 
     /**
