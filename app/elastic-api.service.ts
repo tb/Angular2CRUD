@@ -38,6 +38,13 @@ export class ElasticApiService {
     }
 
     /**
+     * Initialize Elastic Index.
+     */
+    initElasticIndex() {
+        this._http.put(this.BASE_URL, '').subscribe(res => console.log(res));
+    }
+
+    /**
      * CREATE a contact.
      *
      * @param {Contact} contact - Contact object.
@@ -58,7 +65,7 @@ export class ElasticApiService {
 
             url += contact.id + '?refresh=true';
 
-            return this._http.post(url, JSON.stringify(contact)).toPromise();
+            return this._http.put(url, JSON.stringify(contact)).toPromise();
         });
     }
 
