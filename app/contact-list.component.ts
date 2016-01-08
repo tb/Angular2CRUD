@@ -7,50 +7,28 @@ import {ElasticApiService} from './elastic-api.service';
     selector: 'contact-list',
     providers: [ElasticApiService],
     template: `
-        <table>
-            <caption>{{title}}</caption>
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-            <tr *ngFor="#contact of contacts" (click)="onSelect(contact)">
-                <td>{{contact.id}}</td>
-                <td>{{contact.firstName}}</td>
-                <td>{{contact.lastName}}</td>
-            </tr>
-        </table>
+        <div class="page-content">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                <tr *ngFor="#contact of contacts" (click)="onSelect(contact)">
+                    <td>{{contact.id}}</td>
+                    <td>{{contact.firstName}}</td>
+                    <td>{{contact.lastName}}</td>
+                </tr>
+            </table>
+        </div>
     `,
     styles: [`
-        table {
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
         tr {
             cursor: pointer;
-        }
-
-        tr:hover {
-            color: #369;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
         }
     `]
 })
 export class ContactListComponent implements OnInit {
-    public title: string = 'Contact List'; // Type not really needed here (inferred based on string value given).
     public contacts: Contact[]; // List of contacts.
 
     /**

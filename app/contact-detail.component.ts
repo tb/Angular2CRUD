@@ -8,12 +8,29 @@ import {Contact} from './contact';
     providers: [ElasticApiService],
     template: `
         <div *ngIf="contact">
-            <h3>{{contact.firstName}} {{contact.lastName}}</h3>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h2>
+                </div>
 
-            <button type="button" (click)="onEdit()">Edit</button>
-            <button type="button" (click)="onDelete()">Delete</button>
+                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onEdit()">Edit</button>
+                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onDelete()">Delete</button>
+            </div>
         </div>
-    `
+    `,
+    styles: [`
+        .demo-card-wide.mdl-card {
+            width: 512px;
+        }
+        .demo-card-wide > .mdl-card__title {
+            color: #000;
+            height: 176px;
+            background: url('') center / cover;
+        }
+        .demo-card-wide > .mdl-card__menu {
+            color: #fff;
+        }
+    `]
 })
 export class ContactDetailComponent implements OnInit {
     public contact: Contact; // Current contact we are viewing.
