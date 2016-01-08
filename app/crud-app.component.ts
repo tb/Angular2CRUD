@@ -52,12 +52,14 @@ import {ElasticApiService} from './elastic-api.service';
     { path: '/contact/edit/:id', name: 'ContactEdit', component: ContactEditComponent }
 ])
 export class CrudAppComponent implements OnInit {
+    
     /**
      * CrudAppComponent Constructor.
      *
      * @param {ElasticApiService} _apiService - Private ElasticApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
+     
     constructor(private _elasticApiService: ElasticApiService) {}
     /**
      * Lifecycle Hook: ngOnInit - after the first ngOnChanges.
