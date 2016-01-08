@@ -5,6 +5,7 @@ This is a sample CRUD - Create, Read, Update, Delete - application written in An
 Based off of the Angular 1 version: https://github.com/jshea/AngularCRUD.
 
 Build Instructions:
+
 0. start elastic search in a separate shell
 1. git clone https://github.com/camargo/Angular2CRUD.git
 2. npm install
