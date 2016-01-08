@@ -11,7 +11,7 @@ Build Instructions:
 2. npm install
 3. npm start
 
-Supplemental Instruction (Try these first):
+Supplemental Instruction - Try these tutorials to get acquainted with Angular 2:
 
 1. https://angular.io/docs/ts/latest/quickstart.html
 2. https://angular.io/docs/ts/latest/tutorial/
