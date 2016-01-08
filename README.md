@@ -10,3 +10,8 @@ Build Instructions:
 1. git clone https://github.com/camargo/Angular2CRUD.git
 2. npm install
 3. npm start
+
+Supplemental Instruction (Try these first):
+
+1. https://angular.io/docs/ts/latest/quickstart.html
+2. https://angular.io/docs/ts/latest/tutorial/
