@@ -12,11 +12,15 @@ import {ApiService} from './api.service';
                 <th>Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
             </tr>
             <tr *ngFor="#contact of contacts" (click)="onSelect(contact)">
                 <td>{{contact.id}}</td>
                 <td>{{contact.firstName}}</td>
                 <td>{{contact.lastName}}</td>
+                <td>(555)555-5555</td>
+                <td>example@example.com</td>
             </tr>
         </table>
     `,
@@ -25,9 +29,12 @@ import {ApiService} from './api.service';
             cursor: pointer;
         }
 
-        .mdl-data-table th:first-of-type {
-          text-align:left;
-          width: 40px;
+        th {
+            text-align:left;
+        }
+
+        td {
+            text-align:left;
         }
     `]
 })
