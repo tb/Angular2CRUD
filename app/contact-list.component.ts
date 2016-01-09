@@ -24,6 +24,11 @@ import {ApiService} from './api.service';
         tr {
             cursor: pointer;
         }
+
+        .mdl-data-table th:first-of-type {
+          text-align:left;
+          width: 40px;
+        }
     `]
 })
 export class ContactListComponent implements OnInit {
