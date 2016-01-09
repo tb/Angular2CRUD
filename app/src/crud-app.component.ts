@@ -5,13 +5,11 @@ import {ContactDetailComponent} from './contact-detail.component';
 import {ContactNewComponent} from './contact-new.component';
 import {ContactEditComponent} from './contact-edit.component';
 import {ApiService} from './api.service';
-import {ElasticApiService} from './elastic-api.service';
-import {FirebaseApiService} from './firebase-api.service';
 
 @Component({
     selector: 'crud-app',
     directives: [ROUTER_DIRECTIVES],
-    providers: [ApiService, ElasticApiService, FirebaseApiService],
+    providers: [ApiService],
     template: `
         <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
             <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
