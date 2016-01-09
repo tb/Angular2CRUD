@@ -38,7 +38,7 @@ export class FirebaseApiService {
                 });
             }
 
-             return contacts; // Final contact list returned.
+            return contacts; // Final contact list returned.
         });
     }
 
