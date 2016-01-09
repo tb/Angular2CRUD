@@ -1,20 +1,20 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {ElasticApiService} from './elastic-api.service';
+import {ApiService} from './api.service';
 
 @Component({
     selector: 'contact-new',
-    providers: [ElasticApiService],
+    providers: [ApiService],
     template: `
         <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <div class="mdl-card__supporting-text">
                 <div class="mdl-textfield mdl-js-textfield">
-                    <label class="mdl-textfield__label" for="firstName">First Name</label>
+                    <label for="firstName">First Name</label>
                     <input class="mdl-textfield__input" type="text" ngControl="firstName" required>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
-                    <label class="mdl-textfield__label" for="lastName">Last Name</label>
+                    <label for="lastName">Last Name</label>
                     <input class="mdl-textfield__input" type="text" ngControl="lastName" required>
                 </div>
             </div>
@@ -32,17 +32,17 @@ export class ContactNewComponent {
      * ContactNewComponent Constructor.
      *
      * @param {Router} _router - Private Router injected into this component.
-     * @param {ElasticApiService} _apiService - Private ElasticApiService injected into this component.
+     * @param {ApiService} _apiService - Private ApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
     constructor(private _router: Router,
-                private _elasticApiService: ElasticApiService) {}
+                private _apiService: ApiService) {}
 
     /**
      * Submit click handler.
      */
     onSubmit(contact) {
-        this._elasticApiService.createContact(contact).then(() => this._router.navigate(['Contacts']));
+        this._apiService.createContact(contact).then(() => this._router.navigate(['Contacts']));
     }
 
     /**

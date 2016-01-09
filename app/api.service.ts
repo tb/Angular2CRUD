@@ -6,15 +6,16 @@ import 'rxjs/add/operator/map'; // Issue: https://github.com/angular/angular/pul
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class ElasticApiService {
+export class ApiService {
     public BASE_URL: string = 'http://localhost:9200/angular2crud';
 
     /**
-     * ElasticApiService Constructor.
+     * ApiService Constructor.
      *
      * @param {Http} _http - Private Http service injected into this component.
+     * HTTP Info: https://angular.io/docs/ts/latest/api/http/Http-class.html
      */
-    constructor(private _http: Http) {}
+    constructor(private _http: Http) { }
 
     /**
      * Get a list of all contacts.  
@@ -22,25 +23,25 @@ export class ElasticApiService {
     getContacts() {
         var url = this.BASE_URL + '/contact/_search';
 
-        return this._http.get(url)
+        return this._http.get(url) // HTTP GET request to URL.
         .map(res => { 
-            return res.json().hits.hits; 
+            return res.json().hits.hits; // Map response to JSON and get Elastic hits.
         })
-        .map((hits: Array<any>) => {
+        .map((hits: Array<any>) => { // Map Elastic hits to contact list.
             let contacts: Array<Contact> = [];
 
             if (hits) {
                 hits.forEach(hit => contacts.push(hit._source));
             }
 
-            return contacts;
+            return contacts; // Final contact list returned.
         });
     }
 
     /**
-     * Initialize Elastic Index.
+     * Initialize API.
      */
-    initElasticIndex() {
+    init() {
         this._http.put(this.BASE_URL, '').subscribe(res => console.log(res));
     }
 
@@ -52,20 +53,20 @@ export class ElasticApiService {
     createContact(contact: Contact) {
         var url = this.BASE_URL + '/contact/';
 
-        return this.getContacts().toPromise().then(res => {
+        return this.getContacts().toPromise().then(res => { // GET contact list.
             contact.id = -1;
 
             res.forEach(c => {
                 if (c.id > contact.id) {
-                    contact.id = c.id;
+                    contact.id = c.id; // Find the max contact ID.
                 }
             });
 
-            contact.id++;
+            contact.id++; // Set the new contact ID to one greater than the max.
 
             url += contact.id + '?refresh=true';
 
-            return this._http.put(url, JSON.stringify(contact)).toPromise();
+            return this._http.put(url, JSON.stringify(contact)).toPromise(); // PUT new contact.
         });
     }
 

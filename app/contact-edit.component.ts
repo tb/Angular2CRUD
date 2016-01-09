@@ -1,11 +1,11 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
-import {ElasticApiService} from './elastic-api.service';
+import {ApiService} from './api.service';
 import {Contact} from './contact';
 
 @Component({
     selector: 'contact-edit',
-    providers: [ElasticApiService],
+    providers: [ApiService],
     template: `
         <div *ngIf="contact">
             <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
@@ -16,17 +16,17 @@ import {Contact} from './contact';
                 <form #f="ngForm" (ngSubmit)="onSubmit()">
                     <div class="mdl-card__supporting-text">
                         <div class="mdl-textfield mdl-js-textfield">
-                            <label class="mdl-textfield__label" for="firstName">First Name</label>
+                            <label for="firstName">First Name</label>
                             <input class="mdl-textfield__input" type="text" [(ngModel)]="contact.firstName" required>
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield">
-                            <label class="mdl-textfield__label" for="lastName">Last Name</label>
+                            <label for="lastName">Last Name</label>
                             <input class="mdl-textfield__input" type="text" [(ngModel)]="contact.lastName" required>
                         </div>
                     </div>
 
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions">
                         <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">Submit</button>
                         <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onCancel()">Cancel</button>
                     </div>
@@ -42,12 +42,12 @@ export class ContactEditComponent implements OnInit {
      * ContactEditComponent Constructor.
      *
      * @param {Router} _router - Private Router injected into this component.
-     * @param {ElasticApiService} _apiService - Private ElasticApiService injected into this component.
+     * @param {ApiService} _apiService - Private ApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
     constructor(private _router: Router,
                 private _routeParams: RouteParams, 
-                private _elasticApiService: ElasticApiService) {}
+                private _apiService: ApiService) {}
 
     /**
      * Lifecycle Hook: ngOnInit - after the first ngOnChanges.
@@ -55,14 +55,14 @@ export class ContactEditComponent implements OnInit {
      */
     ngOnInit() {
         let id = this._routeParams.get('id'); // 'let' keyword allows block scoping for variables.
-        this._elasticApiService.getContact(id).subscribe(contact => this.contact = contact); 
+        this._apiService.getContact(id).subscribe(contact => this.contact = contact); 
     }
 
     /**
      * Submit click handler.
      */
     onSubmit() {
-        this._elasticApiService.updateContact(this.contact).then(() => this._router.navigate(['Contacts']));
+        this._apiService.updateContact(this.contact).then(() => this._router.navigate(['Contacts']));
     }
 
     /**

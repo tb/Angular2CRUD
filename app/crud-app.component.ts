@@ -4,12 +4,12 @@ import {ContactListComponent} from './contact-list.component';
 import {ContactDetailComponent} from './contact-detail.component';
 import {ContactNewComponent} from './contact-new.component';
 import {ContactEditComponent} from './contact-edit.component';
-import {ElasticApiService} from './elastic-api.service';
+import {ApiService} from './api.service';
 
 @Component({
     selector: 'crud-app',
     directives: [ROUTER_DIRECTIVES],
-    providers: [ElasticApiService],
+    providers: [ApiService],
     template: `
         <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
             <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
@@ -74,16 +74,16 @@ export class CrudAppComponent implements OnInit {
     /**
      * CrudAppComponent Constructor.
      *
-     * @param {ElasticApiService} _apiService - Private ElasticApiService injected into this component.
+     * @param {ApiService} _apiService - Private ApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
-    constructor(private _elasticApiService: ElasticApiService) {}
+    constructor(private _apiService: ApiService) {}
     
     /**
      * Lifecycle Hook: ngOnInit - after the first ngOnChanges.
      * More Info: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
      */
     ngOnInit() {
-        this._elasticApiService.initElasticIndex();
+        this._apiService.init();
     }
 }

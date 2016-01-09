@@ -1,11 +1,11 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Contact} from './contact';
-import {ElasticApiService} from './elastic-api.service';
+import {ApiService} from './api.service';
 
 @Component({
     selector: 'contact-list',
-    providers: [ElasticApiService],
+    providers: [ApiService],
     template: `
         <table class="mdl-data-table mdl-js-data-table demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <tr>
@@ -33,18 +33,18 @@ export class ContactListComponent implements OnInit {
      * ContactListComponent Constructor.
      *
      * @param {Router} _router - Private Router injected into this component.
-     * @param {ElasticApiService} _apiService - Private ElasticApiService injected into this component.
+     * @param {ApiService} _apiService - Private ApiService injected into this component.
      * Note: Underscore convention in Angular 2 signifies a private variable.
      */
     constructor(private _router: Router, 
-                private _elasticApiService: ElasticApiService) {}
+                private _apiService: ApiService) {}
 
     /**
      * Lifecycle Hook: ngOnInit - after the first ngOnChanges.
      * More Info: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
      */
     ngOnInit() {
-        this._elasticApiService.getContacts().subscribe(contacts => this.contacts = contacts);
+        this._apiService.getContacts().subscribe(contacts => this.contacts = contacts);
     }
 
     /**
