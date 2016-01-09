@@ -26,7 +26,20 @@ export class FirebaseApiService {
         return this._http.get(url) // HTTP GET request to URL.
             .map(res => {
                 return res.json(); // Map response to JSON.
-            });
+            })
+            .map((data: Array<any>) => { // Map Firebase data to contact list.
+            let contacts: Array<Contact> = [];
+
+            if (data) {
+                data.forEach(contact => {
+                    if (contact !== null) { // Make sure we are not adding nulls.
+                        contacts.push(contact);
+                    }
+                });
+            }
+
+             return contacts; // Final contact list returned.
+        });
     }
 
     /**

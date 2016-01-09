@@ -49,7 +49,7 @@ export class ContactListComponent implements OnInit {
      * More Info: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
      */
     ngOnInit() {
-        this._apiService.getContacts().subscribe(contacts => this.contacts = contacts);
+        this._apiService.getContacts().subscribe(contacts => { this.contacts = contacts);
     }
 
     /**

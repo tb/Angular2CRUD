@@ -6,10 +6,11 @@ Based off of the Angular 1 version: https://github.com/jshea/AngularCRUD.
 
 Build Instructions:
 
-0. start elastic search in a separate shell
 1. git clone https://github.com/camargo/Angular2CRUD.git
 2. npm install
 3. npm start
+
+Note: Default back-end is currently set to Firebase so the application should work out of the box. You can set the back-end to Elastic in api.service.ts.
 
 Supplemental Instruction - Try these tutorials to get acquainted with Angular 2:
 
