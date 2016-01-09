@@ -8,29 +8,19 @@ import {Contact} from './contact';
     providers: [ElasticApiService],
     template: `
         <div *ngIf="contact">
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h2>
                 </div>
 
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onEdit()">Edit</button>
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onDelete()">Delete</button>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onEdit()">Edit</button>
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onDelete()">Delete</button>
+                </div>
             </div>
         </div>
     `,
-    styles: [`
-        .demo-card-wide.mdl-card {
-            width: 512px;
-        }
-        .demo-card-wide > .mdl-card__title {
-            color: #000;
-            height: 176px;
-            background: url('') center / cover;
-        }
-        .demo-card-wide > .mdl-card__menu {
-            color: #fff;
-        }
-    `]
+    styles: []
 })
 export class ContactDetailComponent implements OnInit {
     public contact: Contact; // Current contact we are viewing.

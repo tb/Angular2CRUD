@@ -7,20 +7,18 @@ import {ElasticApiService} from './elastic-api.service';
     selector: 'contact-list',
     providers: [ElasticApiService],
     template: `
-        <div class="page-content">
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                <tr>
-                    <th>Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-                <tr *ngFor="#contact of contacts" (click)="onSelect(contact)">
-                    <td>{{contact.id}}</td>
-                    <td>{{contact.firstName}}</td>
-                    <td>{{contact.lastName}}</td>
-                </tr>
-            </table>
-        </div>
+        <table class="mdl-data-table mdl-js-data-table demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            <tr *ngFor="#contact of contacts" (click)="onSelect(contact)">
+                <td>{{contact.id}}</td>
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.lastName}}</td>
+            </tr>
+        </table>
     `,
     styles: [`
         tr {

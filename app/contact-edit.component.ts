@@ -8,25 +8,30 @@ import {Contact} from './contact';
     providers: [ElasticApiService],
     template: `
         <div *ngIf="contact">
-            <h3>{{contact.firstName}} {{contact.lastName}}</h3>
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h2>
+                </div>
 
-            <form #f="ngForm" (ngSubmit)="onSubmit()">
-                <label for="firstName">First Name:</label>
-                <input type="text" [(ngModel)]="contact.firstName" required>
+                <form #f="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="mdl-card__supporting-text">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <label class="mdl-textfield__label" for="firstName">First Name</label>
+                            <input class="mdl-textfield__input" type="text" [(ngModel)]="contact.firstName" required>
+                        </div>
 
-                <br>
-                <br>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <label class="mdl-textfield__label" for="lastName">Last Name</label>
+                            <input class="mdl-textfield__input" type="text" [(ngModel)]="contact.lastName" required>
+                        </div>
+                    </div>
 
-                <label for="lastName">Last Name:</label>
-                <input type="text" [(ngModel)]="contact.lastName" required>
-               
-
-                <br>
-                <br>
-
-                <button type="submit">Submit</button>
-                <button type="button" (click)="onCancel()">Cancel</button>
-            </form>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">Submit</button>
+                        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     `
 })
