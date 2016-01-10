@@ -8,7 +8,7 @@ import {Contact} from './contact';
     providers: [ApiService],
     template: `
         <div *ngIf="contact">
-            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+            <div class="detail-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h2>
                 </div>

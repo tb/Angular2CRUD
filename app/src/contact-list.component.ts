@@ -7,7 +7,7 @@ import {ApiService} from './api.service';
     selector: 'contact-list',
     providers: [ApiService],
     template: `
-        <table class="mdl-data-table mdl-js-data-table demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+        <table class="mdl-data-table mdl-js-data-table mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <tr>
                 <th>Id</th>
                 <th>First Name</th>
