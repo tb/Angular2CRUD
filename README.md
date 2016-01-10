@@ -12,7 +12,7 @@ Build Instructions:
 
 Note: Default back-end is currently set to Firebase so the application should work out of the box. You can set the back-end to Elastic in api.service.ts.
 
-Supplemental Instruction - Try these tutorials to get acquainted with Angular 2:
+Supplemental Instruction - Try these tutorials first to get acquainted with Angular 2:
 
 1. https://angular.io/docs/ts/latest/quickstart.html
 2. https://angular.io/docs/ts/latest/tutorial/
