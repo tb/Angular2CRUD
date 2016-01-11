@@ -28,22 +28,22 @@ export class FirebaseApiService {
                 return res.json(); // Map response to JSON.
             })
             .map((data: Array<any>) => { // Map Firebase data to contact list.
-            let contacts: Array<Contact> = [];
+                let contacts: Array<Contact> = [];
 
-            if (data) {
-                // For < 4 items in an Array, Firebase converts your data to an object.
-                if (typeof data === 'object') {
-                    data = Object.keys(data).map(key => { return data[key]; }); // Convert object to array.
+                if (data) {
+                    // For < 4 items in an Array, Firebase converts your data to an object.
+                    if (typeof data === 'object') {
+                        data = Object.keys(data).map(key => { return data[key]; }); // Convert object to array.
+                    }
+
+                    data.forEach(contact => {
+                        if (contact !== null) { // Make sure we are not adding nulls.
+                            contacts.push(contact);
+                        }
+                    });
                 }
 
-                data.forEach(contact => {
-                    if (contact !== null) { // Make sure we are not adding nulls.
-                        contacts.push(contact);
-                    }
-                });
-            }
-
-            return contacts; // Final contact list returned.
+                return contacts; // Final contact list returned.
         });
     }
 

@@ -15,7 +15,7 @@ import {ApiService} from './api.service';
             <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
                 <div class="mdl-layout__header-row">
                     <!-- Title -->
-                    <span class="mdl-layout-title">Angular 2 CRUD Sample Application</span>
+                    <span class="mdl-layout-title">Angular 2 - Sample CRUD Application</span>
 
                     <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
