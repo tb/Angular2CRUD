@@ -25,10 +25,12 @@ gulp.task('js', function() {
                .pipe(gulp.dest('./dist'));
 });
 
+// Concat all .css libs.
 gulp.task('css', function() {
     return gulp.src(cssLibFiles)
                .pipe(concat('angular2crud.css'))
                .pipe(gulp.dest('./dist'));
 });
 
+// Default build task (run by typing 'gulp').
 gulp.task('default', ['js', 'css']);
