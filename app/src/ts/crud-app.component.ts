@@ -33,7 +33,7 @@ import {ApiService} from './api.service';
 
             <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
-                    <img src="app/assets/user.jpg" class="demo-avatar">
+                    <img src="Angular2CRUD/app/assets/user.jpg" class="demo-avatar">
                     <div class="demo-avatar-dropdown">
                         <span>hello@example.com</span>
                         
