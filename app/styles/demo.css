@@ -185,5 +185,5 @@ html, body {
 .detail-card .mdl-card__title {
   color: #fff;
   height: 176px;
-  background-image: url('http://www.getmdl.io/assets/demos/welcome_card.jpg');
+  background-image: url('./../app/assets/welcome_card.jpg');
 }
