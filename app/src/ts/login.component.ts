@@ -1,33 +1,59 @@
 import {Component} from 'angular2/core';
+import {Router} from 'angular2/router';
+import {ApiService} from './api.service';
 
 @Component({
     selector: 'login',
     template: `
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--6-col">
-                <div class="mdl-card mdl-shadow--2dp">
-                    <form #f="ngForm" (ngSubmit)="onSubmit($event, email.value, password.value)">
-                        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                            Login
-                        </div>
-                        <br>
-                        <div class="mdl-card__supporting-text">
-                            <input type="email" #email class="mdl-textfield__input" id="email" placeholder="Email" required>
-                            
-                            <br>
-                            <br>
+        <h4>Login</h4>
 
-                            <input type="password" #password class="mdl-textfield__input" id="password" placeholder="Password" required>
-                        </div>
-                        <br>
-                        <div class="mdl-card__actions">
-                            <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
-                            <a href="create" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Create Account</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    `
+        <span *ngIf="loginError" class="error">
+            Invalid Email/Password Combination.
+            <br>
+            <br>
+        </span>
+
+        <form #f="ngForm" (ngSubmit)="onSubmit(email.value, password.value)">
+            <input type="email" #email id="email" placeholder="Email" required>
+
+            <input type="password" #password placeholder="Password" required>
+
+            <button type="submit">Submit</button>
+            <a href="create">Create Account</a>
+        </form>
+    `,
+    styles: [`
+        .error {
+            color: red;
+        }
+    `]
 })
-export class LoginComponent {}
+export class LoginComponent {
+    public loginError = false; // True if there is a login error.
+
+    /**
+     * LoginComponent Constructor.
+     *
+     * @param {Router} _router - Private Router injected into this component.
+     * @param {ApiService} _apiService - Private ApiService injected into this component.
+     * Note: Underscore convention in Angular 2 signifies a private variable.
+     */
+    constructor(private _router: Router,
+                private _apiService: ApiService) {}
+
+    /**
+     * Submit click handler.
+     */
+    onSubmit(email, password) {
+        this.loginError = false;
+
+        this._apiService.loginAccount(email, password, success => {
+            if (success) {
+                this._router.navigate(['Dashboard/Contacts']);
+            }
+            else {
+                this.loginError = true;
+            }
+        });
+    }
+}

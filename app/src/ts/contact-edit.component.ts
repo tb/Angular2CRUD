@@ -8,30 +8,18 @@ import {Contact} from './contact';
     providers: [ApiService],
     template: `
         <div *ngIf="contact">
-            <div class="detail-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h2>
-                </div>
+            <h4>{{contact.firstName}} {{contact.lastName}}</h4>
 
-                <form #f="ngForm" (ngSubmit)="onSubmit()">
-                    <div class="mdl-card__supporting-text">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <label for="firstName">First Name</label>
-                            <input class="mdl-textfield__input" type="text" [(ngModel)]="contact.firstName" required>
-                        </div>
+            <form #f="ngForm" (ngSubmit)="onSubmit()">
+                <label for="firstName">First Name</label>
+                <input type="text" [(ngModel)]="contact.firstName" required>
 
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <label for="lastName">Last Name</label>
-                            <input class="mdl-textfield__input" type="text" [(ngModel)]="contact.lastName" required>
-                        </div>
-                    </div>
+                <label for="lastName">Last Name</label>
+                <input type="text" [(ngModel)]="contact.lastName" required>
 
-                    <div class="mdl-card__actions">
-                        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">Submit</button>
-                        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onCancel()">Cancel</button>
-                    </div>
-                </form>
-            </div>
+                <button type="submit">Submit</button>
+                <button type="button" (click)="onCancel()">Cancel</button>
+            </form>
         </div>
     `
 })

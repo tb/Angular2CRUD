@@ -96,4 +96,78 @@ export class ApiService {
             return this._firebaseApiService.deleteContact(id);
         }  
     }
+
+    /**
+     * Create a new user account.
+     *
+     * @param {string} email - Email of new user.
+     * @param {string} password - Password of new user.
+     * @param {Function} success - Callback function after create operation completes.
+     */
+    createAccount(email: string, password: string, success: Function) {
+        if (this.elastic) {
+            console.log('ERROR: createAccount(email, password, success) for Elastic is not implemented.')
+        }
+        else if (this.firebase) {
+            return this._firebaseApiService.createAccount(email, password, success);
+        } 
+    }
+
+    /**
+     * Login a user account.
+     *
+     * @param {string} email - Email of user.
+     * @param {string} password - Password of user.
+     * @param {Function} success - Callback function after login operation completes.
+     */
+    loginAccount(email: string, password: string, success: Function) {
+        if (this.elastic) {
+            console.log('ERROR: loginAccount(email, password, success) for Elastic is not implemented.')
+        }
+        else if (this.firebase) {
+            return this._firebaseApiService.loginAccount(email, password, success);
+        } 
+    }
+
+    /**
+     * Logout a user account.
+     *
+     * @param {Function} success - Callback function after logout operation completes.
+     */
+    logoutAccount(success: Function) {
+        if (this.elastic) {
+            console.log('ERROR: logoutAccount(success) for Elastic is not implemented.')
+        }
+        else if (this.firebase) {
+            return this._firebaseApiService.logoutAccount(success);
+        }
+    }
+
+    /**
+     * Delete a user account.
+     *
+     * @param {string} email - Email of user we are deleting.
+     * @param {string} password - Password of user we are deleting.
+     * @param {Function} success - Callback function after delete operation completes.
+     */
+    deleteAccount(email: string, password: string, success: Function) {
+        if (this.elastic) {
+            console.log('ERROR: deleteAccount(email, password, success) for Elastic is not implemented.')
+        }
+        else if (this.firebase) {
+            return this._firebaseApiService.deleteAccount(email, password, success);
+        }
+    }
+
+    /**
+     * Returns the email of the logged in user.
+     */
+    getLoggedInAccountEmail() {
+        if (this.elastic) {
+            console.log('ERROR: getLoggedInAccountEmail() for Elastic is not implemented.')
+        }
+        else if (this.firebase) {
+            return this._firebaseApiService.getLoggedInAccountEmail();
+        }
+    }
 }

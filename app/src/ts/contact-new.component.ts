@@ -6,23 +6,15 @@ import {ApiService} from './api.service';
     selector: 'contact-new',
     providers: [ApiService],
     template: `
-        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-            <div class="mdl-card__supporting-text">
-                <div class="mdl-textfield mdl-js-textfield">
-                    <label for="firstName">First Name</label>
-                    <input class="mdl-textfield__input" type="text" ngControl="firstName" required>
-                </div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+            <label for="firstName">First Name</label>
+            <input class="" type="text" ngControl="firstName" required>
 
-                <div class="mdl-textfield mdl-js-textfield">
-                    <label for="lastName">Last Name</label>
-                    <input class="mdl-textfield__input" type="text" ngControl="lastName" required>
-                </div>
-            </div>
+            <label for="lastName">Last Name</label>
+            <input class="" type="text" ngControl="lastName" required>
 
-            <div class="mdl-card__actions mdl-card--border">
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">Submit</button>
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onCancel()">Cancel</button>
-            </div>
+            <button type="submit">Submit</button>
+            <button type="button" (click)="onCancel()">Cancel</button>
         </form>
     `
 })

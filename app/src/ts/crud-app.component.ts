@@ -1,17 +1,15 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {ApiService} from './api.service';
+import {RouteConfig} from 'angular2/router';
 import {DashboardComponent} from './dashboard.component';
 import {LoginComponent} from './login.component';
 import {CreateComponent} from './create.component';
-
+import {LoggedInOutletDirective} from './logged-in-outlet.directive';
 
 @Component({
     selector: 'crud-app',
-    directives: [ROUTER_DIRECTIVES],
-    providers: [ApiService],
+    directives: [LoggedInOutletDirective],
     template: `
-        <router-outlet></router-outlet> <!-- Display views produced by the router. -->
+        <logged-in-outlet></logged-in-outlet> <!-- Display views produced by the router. -->
     `
 })
 @RouteConfig([ // Configure a router with RouteDefinitions, each mapping a URL path to a component.

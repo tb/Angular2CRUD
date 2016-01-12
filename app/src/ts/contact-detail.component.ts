@@ -8,23 +8,20 @@ import {Contact} from './contact';
     providers: [ApiService],
     template: `
         <div *ngIf="contact">
-            <div class="detail-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">{{contact.firstName}} {{contact.lastName}}</h2>
-                </div>
+            <h2 class="">{{contact.firstName}} {{contact.lastName}}</h2>
 
-                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                    Phone Number: (555)555-5555
-                    <br>
-                    <br>
-                    Email: example@example.com
-                </div>
+            Phone Number: (555)555-5555
+            
+            <br>
+            <br>
 
-                <div class="mdl-card__actions mdl-card--border">
-                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onEdit()">Edit</button>
-                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="button" (click)="onDelete()">Delete</button>
-                </div>
-            </div>
+            Email: example@example.com
+
+            <br>
+            <br>
+
+            <button type="button" (click)="onEdit()">Edit</button>
+            <button type="button" (click)="onDelete()">Delete</button>
         </div>
     `,
     styles: []
