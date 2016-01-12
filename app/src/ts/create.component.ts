@@ -1,14 +1,15 @@
 import {Component} from 'angular2/core';
+import {ApiService} from './api.service';
 
 @Component({
-    selector: 'login',
+    selector: 'create',
     template: `
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-card mdl-shadow--2dp">
-                    <form #f="ngForm" (ngSubmit)="onSubmit($event, email.value, password.value)">
-                        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                            Login
+                    <form #f="ngForm" (ngSubmit)="onSubmit(email.value, password.value)">
+                        <div class="mdl-card__title mdl-card--expand mdl-color--blue-300">
+                            Create Account
                         </div>
                         <br>
                         <div class="mdl-card__supporting-text">
@@ -22,7 +23,7 @@ import {Component} from 'angular2/core';
                         <br>
                         <div class="mdl-card__actions">
                             <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
-                            <a href="create" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Create Account</a>
+                            <a href="login" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Login</a>
                         </div>
                     </form>
                 </div>
@@ -30,4 +31,21 @@ import {Component} from 'angular2/core';
         </div>
     `
 })
-export class LoginComponent {}
+export class CreateComponent {
+
+    /**
+     * CreateComponent Constructor.
+     *
+     * @param {ApiService} _apiService - Private ApiService injected into this component.
+     * Note: Underscore convention in Angular 2 signifies a private variable.
+     */
+    constructor(private _apiService: ApiService) {}
+
+    /**
+     * Submit click handler.
+     */
+    onSubmit(email, password) {
+        console.log(email);
+        console.log(password);
+    }
+}
