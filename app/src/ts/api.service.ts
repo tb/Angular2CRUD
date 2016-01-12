@@ -7,6 +7,7 @@ import {Contact} from './contact';
 export class ApiService {
     private elastic: boolean = false;
     private firebase: boolean = true;
+    public localStorageKey: string;
 
     /**
      * ApiService Constructor.
@@ -106,7 +107,7 @@ export class ApiService {
      */
     createAccount(email: string, password: string, success: Function) {
         if (this.elastic) {
-            console.log('ERROR: createAccount(email, password, success) for Elastic is not implemented.')
+            console.log('ERROR: createAccount(email, password, success) for Elastic is not implemented.');
         }
         else if (this.firebase) {
             return this._firebaseApiService.createAccount(email, password, success);
@@ -122,7 +123,7 @@ export class ApiService {
      */
     loginAccount(email: string, password: string, success: Function) {
         if (this.elastic) {
-            console.log('ERROR: loginAccount(email, password, success) for Elastic is not implemented.')
+            console.log('ERROR: loginAccount(email, password, success) for Elastic is not implemented.');
         }
         else if (this.firebase) {
             return this._firebaseApiService.loginAccount(email, password, success);
@@ -136,7 +137,7 @@ export class ApiService {
      */
     logoutAccount(success: Function) {
         if (this.elastic) {
-            console.log('ERROR: logoutAccount(success) for Elastic is not implemented.')
+            console.log('ERROR: logoutAccount(success) for Elastic is not implemented.');
         }
         else if (this.firebase) {
             return this._firebaseApiService.logoutAccount(success);
@@ -152,7 +153,7 @@ export class ApiService {
      */
     deleteAccount(email: string, password: string, success: Function) {
         if (this.elastic) {
-            console.log('ERROR: deleteAccount(email, password, success) for Elastic is not implemented.')
+            console.log('ERROR: deleteAccount(email, password, success) for Elastic is not implemented.');
         }
         else if (this.firebase) {
             return this._firebaseApiService.deleteAccount(email, password, success);
@@ -164,10 +165,22 @@ export class ApiService {
      */
     getLoggedInAccountEmail() {
         if (this.elastic) {
-            console.log('ERROR: getLoggedInAccountEmail() for Elastic is not implemented.')
+            console.log('ERROR: getLoggedInAccountEmail() for Elastic is not implemented.');
         }
         else if (this.firebase) {
             return this._firebaseApiService.getLoggedInAccountEmail();
+        }
+    }
+
+    /**
+     * Return the local storage session value. 
+     */
+    getLocalStorageSession() {
+        if (this.elastic) {
+            console.log('ERROR: getLocalStorageSession() for Elastic is not implemented.');
+        }
+        else if (this.firebase) {
+            return this._firebaseApiService.getLocalStorageSession();
         }
     }
 }

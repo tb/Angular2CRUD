@@ -7,8 +7,9 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class FirebaseApiService {
-    public BASE_URL: string = 'https://angular2crud.firebaseio.com';
-    public firebase = new Firebase(this.BASE_URL);
+    private BASE_URL: string = 'https://angular2crud.firebaseio.com';
+    private LOCAL_STORAGE_SESSION_KEY: string = 'firebase:session::angular2crud';
+    private firebase = new Firebase(this.BASE_URL);
 
     /**
      * FirebaseApiService Constructor.
@@ -204,5 +205,12 @@ export class FirebaseApiService {
         } else {
             console.log("User is logged out");
         }
+    }
+
+    /**
+     * Return the local storage session value. 
+     */
+    getLocalStorageSession() {
+        return localStorage.getItem(this.LOCAL_STORAGE_SESSION_KEY);
     }
 }

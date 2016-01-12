@@ -1,20 +1,23 @@
 import {Directive, ElementRef, DynamicComponentLoader, Attribute} from 'angular2/core';
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
+import {ApiService} from './api.service';
 
 @Directive({
-    selector: 'logged-in-outlet'
+    selector: 'logged-in-router-outlet',
+    providers: [ApiService]
 })
-export class LoggedInOutletDirective extends RouterOutlet {
+export class LoggedInRouterOutletDirective extends RouterOutlet {
     public publicRoutes: any;
     private parentRouter: Router;
     
     /**
-     * LoggedInOutletDirective Constructor.
+     * LoggedInRouterOutletDirective Constructor.
      */
     constructor(_elementRef: ElementRef,
                 _loader: DynamicComponentLoader,
                 _parentRouter: Router,
-                @Attribute('name') nameAttr: string) {
+                @Attribute('name') nameAttr: string,
+                private _apiService: ApiService) {
         super(_elementRef, _loader, _parentRouter, nameAttr);
 
         this.parentRouter = _parentRouter;
@@ -34,7 +37,7 @@ export class LoggedInOutletDirective extends RouterOutlet {
     activate(instruction: ComponentInstruction) {
         var url = this.parentRouter.lastNavigationAttempt;
 
-        if (!this.publicRoutes[url] && !localStorage.getItem('firebase:session::angular2crud')) {
+        if (!this.publicRoutes[url] && !this._apiService.getLocalStorageSession()) {
             this.parentRouter.navigateByUrl('/login');
         }
         return super.activate(instruction);
